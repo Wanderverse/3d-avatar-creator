@@ -25,6 +25,8 @@ const Appearance = dynamic(() => import('@/pages/Configurator'), { ssr: false })
 import Scene from '@/components/canvas/Scene'
 
 // dynamically import the manifest
+const assetImportPath = process.env.VITE_ASSET_PATH + '/manifest.json'
+const peresonalityImportPath = process.env.VITE_ASSET_PATH + '/personality.json'
 
 let cameraDistance
 const centerCameraTarget = new THREE.Vector3()
@@ -56,8 +58,9 @@ async function fetchManifest() {
     return JSON.parse(manifest)
   }
 
-  // const response = await fetch(assetImportPath)
-  const data = manifestJSON
+  const response = await fetch(assetImportPath)
+  const data = await response.json()
+
   localStorage.setItem('manifest', JSON.stringify(data))
   return data
 }
@@ -67,8 +70,8 @@ async function fetchPersonality() {
   if (personality) {
     return JSON.parse(personality)
   }
-  // const response = await fetch(peresonalityImportPath)
-  const data = personalityJSON
+  const response = await fetch(peresonalityImportPath)
+  const data = await response.json()
   localStorage.setItem('personality', JSON.stringify(data))
   return data
 }
@@ -104,11 +107,10 @@ async function fetchAll() {
     personality,
     sceneModel,
     blinkManager,
-    lookatManager,
+    lookatManager, // Add this line to return lookatManager
     effectManager,
   }
 }
-
 const fetchData = () => {
   let status, result
 
@@ -300,7 +302,16 @@ export default function App() {
         {/* <LanguageSwitch />
       <Background />
     */}
-        <Scene sceneModel={sceneModel} lookatManager={lookatManager} />
+        <Scene
+          sceneModel={sceneModel}
+          lookatManager={lookatManager}
+          // ref={(ref) => {
+          //   if (ref) {
+          //     camera = ref.camera
+          //     controls = ref.controls
+          //   }
+          // }}
+        />
         {pages[viewMode]}
       </div>
     </Fragment>

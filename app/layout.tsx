@@ -4,7 +4,7 @@ import '@/global.css'
 
 import { Web3Provider } from '@ethersproject/providers'
 import { Web3ReactProvider } from '@web3-react/core'
-import { Suspense, ReactNode } from 'react'
+import React, { Suspense, ReactNode } from 'react'
 import { AudioProvider } from '@/context/AudioContext'
 
 import { AccountProvider } from '@/context/AccountContext'
@@ -17,6 +17,7 @@ import { SoundProvider } from '@/context/SoundContext'
 import '@/lib/localization/i18n'
 import { LanguageProvider } from '@/context/LanguageContext'
 import '@/styles/root.sass'
+
 // export const metadata = {
 //   title: 'Next.js + Three.js',
 //   description: 'A minimal starter for Nextjs + React-three-fiber and Threejs.',
@@ -41,23 +42,25 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
       */}
       <head />
       <body>
-        {/* <Web3ReactProvider getLibrary={getLibrary}> */}
-        <AccountProvider>
-          <LanguageProvider>
-            <AudioProvider>
-              <ViewProvider>
-                <SceneProvider>
-                  <SoundProvider>
-                    <Suspense>
-                      <Layout>{children}</Layout>
-                    </Suspense>
-                  </SoundProvider>
-                </SceneProvider>
-              </ViewProvider>
-            </AudioProvider>
-          </LanguageProvider>
-        </AccountProvider>
-        {/* </Web3ReactProvider> */}
+        <React.StrictMode>
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <AccountProvider>
+              <LanguageProvider>
+                <AudioProvider>
+                  <ViewProvider>
+                    <SceneProvider>
+                      <SoundProvider>
+                        <Suspense>
+                          <Layout>{children}</Layout>
+                        </Suspense>
+                      </SoundProvider>
+                    </SceneProvider>
+                  </ViewProvider>
+                </AudioProvider>
+              </LanguageProvider>
+            </AccountProvider>
+          </Web3ReactProvider>
+        </React.StrictMode>
       </body>
     </html>
   )

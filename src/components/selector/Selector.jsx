@@ -119,9 +119,6 @@ export default function Selector({
       })
     }
 
-    console.log('typeRestrictions', typeRestrictions)
-    console.log('traitRestrictions', traitRestrictions)
-
     return {
       traitRestrictions,
       typeRestrictions,
@@ -527,6 +524,7 @@ export default function Selector({
       m.visible = false
       // add the now model to the current scene
       model.add(m)
+      console.log('model add', m, model)
       animationManager.update() // note: update animation to prevent some frames of T pose at start.
       setTimeout(() => {
         // update the joint rotation of the new trait
@@ -604,9 +602,6 @@ export default function Selector({
       <></>
     )
   }
-
-  console.log('avatar', avatar)
-
   return (
     !!currentTraitName && (
       <div className={styles['SelectorContainerPos']}>
@@ -656,17 +651,6 @@ export default function Selector({
                         : {}
                     }
                   />
-                  {/* <img
-                    src={tick}
-                    className={
-                      avatar[currentTraitName] && avatar[currentTraitName].id === option.item.id // todo (pending fix): this only considers the item id and not the subtraits id
-                        ? styles['tickStyle']
-                        : styles['tickStyleInActive']
-                    }
-                  /> */}
-                  {/*{active && loadPercentage > 0 && loadPercentage < 100 && (
-                    // TODO: Fill up background from bottom as loadPercentage increases
-                  )}*/}
                 </div>
               )
             })}
