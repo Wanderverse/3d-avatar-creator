@@ -21,7 +21,9 @@ const nextConfig = {
     reactRoot: 'concurrent',
     appDir: true,
   },
-  images: {},
+  images: {
+    exclude: [/node_modules\/sharp\//],
+  },
   webpack(config, { isServer }) {
     // audio support
     config.module.rules.push({

@@ -1,0 +1,83 @@
+// media queries
+=xl
+    @media only screen and (max-width: "1579px")
+        @content
+=w
+    @media only screen and (max-width: "1419px")
+        @content
+=x
+    @media only screen and (max-width: "1339px")
+        @content
+=d
+    @media only screen and (max-width: "1259px")
+        @content
+=t
+    @media only screen and (max-width: "1023px")
+        @content
+=m
+    @media only screen and (max-width: "767px")
+        @content
+=a
+    @media only screen and (max-width: "639px")
+        @content
+=s
+    @media only screen and (max-width: "474px")
+        @content
+
+=r($width)
+    @media only screen and (max-width: $width+ "px")
+        @content
+
+=rmin($width)
+    @media only screen and (min-width: $width+ "px")
+        @content
+
+=rh($height)
+    @media screen and (max-height: $height + "px")
+        @content
+
+// colors
+$a0: #360773
+$a1: #b82174
+$a2: #250f30
+$a3: #df1d58
+$a4: linear-gradient(to bottom right, $a1, $a3)
+$a5: #170b1d
+
+$b1: linear-gradient(to right top, $a0, $a3)
+$b2: linear-gradient(to bottom left, $a1, $a0)
+
+
+$s1: #D83F87
+$s2: #44318D
+
+$red: #FF5C17
+
+// colors neutral
+$n8: #FFFFFF
+$n7: #f3f0ff
+$n6: #dfdaef
+$n5: #cfcae2
+$n4: #afa9c7
+$n3: #7a7395
+$n2: #443f59
+$n1: #211d2f
+$n0: #181522
+d35035
+// opacity
+$o1: rgba($n1, .5)
+$o3: rgba($n3, .5)
+$o5: rgba($n5, .75)
+$o6: rgba($n6, .5)
+$o7-50: rgba($n7, .5)
+$o7-75: rgba($n7, .75)
+
+$shade: #6416ff
+
+$grd: conic-gradient(from 180deg at 50% 50%, #7f5cff -18.66deg, #FFE249 22.23deg, #F35950 78.14deg, #7C5BFF 159deg, #2ed5ff 202.32deg, #5c7dff 341.34deg, #ffc249 382.23deg)
+
+=shadow1
+    box-shadow: 0px rem(32) rem(48) rem(-16) rgba(0, 0, 0, 0.1)
+
+=shadow2
+    box-shadow: 0px rem(12) rem(40) rem(-16) rgba(0, 0, 0, 0.05)

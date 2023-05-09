@@ -1,0 +1,45 @@
+app
+|-- api
+| |-- avatar
+| | |-- createAvatar.js
+| | |-- getAvatar.js
+| | |-- listAvatars.js
+| | |-- mintAvatarNFT.js
+| | |-- updateAvatar.js
+|-- components
+| |-- App
+| | |-- Canvas
+| | | |-- SceneManager
+| | | | |-- Scene
+| | | | | |-- Environment
+| | | | | | |-- Skybox
+| | | | | | |-- Lighting
+| | | | | |-- Avatar
+| | | | | | |-- ModelImporter
+| | | | | | |-- ModelExporter
+| | | | | | |-- NFTMinter
+| | | | | | |-- FaceCustomization
+| | | | | | |-- HairCustomization
+| | | | | | |-- ClothingCustomization
+| | | | | | |-- AccessoriesCustomization
+| | | | | | |-- TextureMaterialImporter
+| | | | | | |-- SaveLoadAvatar
+| | | | | | |-- AvatarController
+| | | | | | |-- AnimationController
+| | | | | |-- Camera
+| | | | | |-- EffectsComposer (for post-processing effects)
+| | |-- UIManager
+| | | |-- Notifications
+| | | |-- ExplorePage
+| | | | |-- AvatarCard
+|-- config (Next.js and other configuration files)
+|-- lib (utility functions, helpers)
+|-- models (3D models and related assets)
+|-- pages
+| |-- \_app.js
+| |-- index.js (Home page)
+|-- public (static files like textures, models, etc.)
+|-- styles (CSS, SCSS, or styled-components)
+|-- next.config.js
+|-- package.json
+|-- README.md

@@ -1,7 +1,8 @@
 'use client'
-
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
+import { Background } from './Background/Background'
+
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
 const Layout = ({ children }) => {
@@ -18,6 +19,7 @@ const Layout = ({ children }) => {
         touchAction: 'auto',
       }}
     >
+      <Background />
       {children}
       <Scene
         style={{
