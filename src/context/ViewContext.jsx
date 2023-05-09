@@ -26,8 +26,6 @@ export const ViewProvider = (props) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [mouseIsOverUI, setMouseIsOverUI] = React.useState(false)
 
-  console.log(viewMode)
-
   return (
     <ViewContext.Provider
       value={{

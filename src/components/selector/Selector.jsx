@@ -119,6 +119,9 @@ export default function Selector({
       })
     }
 
+    console.log('typeRestrictions', typeRestrictions)
+    console.log('traitRestrictions', traitRestrictions)
+
     return {
       traitRestrictions,
       typeRestrictions,
@@ -131,6 +134,7 @@ export default function Selector({
       loadedData.map((data) => {
         newAvatar = { ...newAvatar, ...itemAssign(data) }
       })
+
       const finalAvatar = { ...avatar, ...newAvatar }
       setTimeout(() => {
         if (Object.keys(finalAvatar).length > 0) {
@@ -145,14 +149,16 @@ export default function Selector({
   // options are selected by random or start
   useEffect(() => {
     if (selectedOptions.length > 0) {
+      console.log('selectedOptions', selectedOptions)
       setIsChangingWholeAvatar(true)
       if (selectedOptions.length > 1) {
-        console.log('effectManager', effectManager)
-        console.log('animationManager', animationManager)
-        // effectManager.setTransitionEffect('fade_out_avatar')
-        // effectManager.playFadeOutEffect()
+        effectManager.setTransitionEffect('fade_out_avatar')
+        effectManager.playFadeOutEffect()
         resetCurrentTraitMap()
       }
+
+      console.log('animationManager', animationManager)
+      console.log('effectManager', effectManager)
 
       loadSelectedOptions(selectedOptions)
       setSelectedOptions([])
@@ -420,6 +426,8 @@ export default function Selector({
       // basic vrm setup (only if model is vrm)
       vrm = m.userData.vrm
 
+      console.log('animation2', animationManager)
+
       if (getAsArray(templateInfo.lipSyncTraits).indexOf(traitData.trait) !== -1) setLipSync(new LipSync(vrm))
       renameVRMBones(vrm)
 
@@ -597,6 +605,8 @@ export default function Selector({
     )
   }
 
+  console.log('avatar', avatar)
+
   return (
     !!currentTraitName && (
       <div className={styles['SelectorContainerPos']}>
@@ -604,7 +614,7 @@ export default function Selector({
         <div className={styles['bottomLine']} />
         <div className={styles['scrollContainer']}>
           <div className={styles['selector-container']}>
-            {/* <ClearTraitButton /> */}{' '}
+            <ClearTraitButton />
             {currentOptions.map((option) => {
               let active = option.key === selectValue
               if (currentTrait.size === 0) {
@@ -646,14 +656,14 @@ export default function Selector({
                         : {}
                     }
                   />
-                  <img
-                    src={'ui/selector/tick.svg'}
+                  {/* <img
+                    src={tick}
                     className={
                       avatar[currentTraitName] && avatar[currentTraitName].id === option.item.id // todo (pending fix): this only considers the item id and not the subtraits id
                         ? styles['tickStyle']
                         : styles['tickStyleInActive']
                     }
-                  />
+                  /> */}
                   {/*{active && loadPercentage > 0 && loadPercentage < 100 && (
                     // TODO: Fill up background from bottom as loadPercentage increases
                   )}*/}
@@ -666,59 +676,3 @@ export default function Selector({
     )
   )
 }
-
-//  {
-//    currentOptions.map((option) => {
-//      let active = option.key === selectValue
-//      if (currentTrait.size === 0) {
-//        active = false
-//      } else {
-//        active = currentTrait.get(option.trait.trait) === option.key
-//      }
-//      return (
-//        <div
-//          key={option.key}
-//          className={`${styles['selectorButton']} ${styles['selector-button']} ${active ? styles['active'] : ''}`}
-//          onClick={() => {
-//            if (effectManager.getTransitionEffect('normal')) {
-//              selectTraitOption(option)
-//              setLoadPercentage(1)
-//            }
-//          }}
-//        >
-//          <TokenBox
-//            size={56}
-//            resolution={2048}
-//            numFrames={128}
-//            icon={option.icon}
-//            rarity={active ? 'mythic' : 'none'}
-//            style={
-//              option.iconHSL
-//                ? {
-//                    filter:
-//                      'brightness(' +
-//                      (option.iconHSL.l + 0.5) +
-//                      ') hue-rotate(' +
-//                      option.iconHSL.h * 360 +
-//                      'deg) saturate(' +
-//                      option.iconHSL.s * 100 +
-//                      '%)',
-//                  }
-//                : {}
-//            }
-//          />
-//          <img
-//            src={'ui/selector/tick.svg'}
-//            className={
-//              avatar[currentTraitName] && avatar[currentTraitName].id === option.item.id // todo (pending fix): this only considers the item id and not the subtraits id
-//                ? styles['tickStyle']
-//                : styles['tickStyleInActive']
-//            }
-//          />
-//          {/*{active && loadPercentage > 0 && loadPercentage < 100 && (
-//                     // TODO: Fill up background from bottom as loadPercentage increases
-//                   )}*/}
-//        </div>
-//      )
-//    })
-//  }

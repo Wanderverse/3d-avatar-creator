@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useContext } from 'react'
-
 // import shuffle from '@/public/ui/traits/shuffle.svg'
 import { AudioContext } from '@/context/AudioContext'
 import { SceneContext } from '@/context/SceneContext'
@@ -49,7 +48,10 @@ export default function Editor({ animationManager, blinkManager, lookatManager, 
     !isMute && playSound('optionClick')
     if (option.name === currentTraitName) {
       if (cameraFocused) {
-        moveCamera({ targetY: option.cameraTarget.height, distance: option.cameraTarget.distance })
+        moveCamera({
+          targetY: option.cameraTarget.height,
+          distance: option.cameraTarget.distance,
+        })
         setCameraFocused(false)
       } else {
         moveCamera({ targetY: 0.8, distance: 3.2 })
@@ -60,7 +62,10 @@ export default function Editor({ animationManager, blinkManager, lookatManager, 
     }
 
     setRemoveOption(getAsArray(templateInfo.requiredTraits).indexOf(option.name) === -1)
-    moveCamera({ targetY: option.cameraTarget.height, distance: option.cameraTarget.distance })
+    moveCamera({
+      targetY: option.cameraTarget.height,
+      distance: option.cameraTarget.distance,
+    })
     setCurrentOptions(getTraitOptions(option, templateInfo))
     setCurrentTraitName(option.name)
   }
@@ -113,18 +118,17 @@ export default function Editor({ animationManager, blinkManager, lookatManager, 
               ))}
           </div>
         </div>
+        x
       </div>
-      {templateInfo && (
-        <Selector
-          animationManager={animationManager}
-          templateInfo={templateInfo}
-          blinkManager={blinkManager}
-          lookatManager={lookatManager}
-          effectManager={effectManager}
-          selectClass={selectClass}
-          isNewClass={isNewClass}
-        />
-      )}
+      <Selector
+        animationManager={animationManager}
+        templateInfo={templateInfo}
+        blinkManager={blinkManager}
+        lookatManager={lookatManager}
+        effectManager={effectManager}
+        selectClass={selectClass}
+        isNewClass={isNewClass}
+      />
     </Fragment>
   )
 }

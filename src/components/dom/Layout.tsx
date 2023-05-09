@@ -21,7 +21,21 @@ const Layout = ({ children }) => {
     >
       <Background />
       {children}
-      <Scene
+      {/* <Scene
+        sceneModel={sceneModel}
+        lookatManager={lookatManager}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+        }}
+        // eventSource={ref}
+        // eventPrefix='client'
+      /> */}
+      {/* <Scene
         style={{
           position: 'fixed',
           top: 0,
@@ -32,7 +46,7 @@ const Layout = ({ children }) => {
         }}
         eventSource={ref}
         eventPrefix='client'
-      />
+      /> */}
     </div>
   )
 }
